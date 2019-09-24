@@ -161,6 +161,7 @@ void DwbController::followPath()
     progress_checker_->reset();
 
     rclcpp::Rate loop_rate(controller_frequency_);
+    rtm_.init("dwb_follow_path");
     while (rclcpp::ok()) {
       if (action_server_ == nullptr) {
         RCLCPP_DEBUG(get_logger(), "Action server unavailable. Stopping.");
@@ -182,6 +183,7 @@ void DwbController::followPath()
       updateGlobalPath();
 
       computeAndPublishVelocity();
+      rtm_.calc_looptime("dwb_follow_path", this->now());
 
       if (isGoalReached()) {
         RCLCPP_INFO(get_logger(), "Reached the goal!");

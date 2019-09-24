@@ -27,6 +27,7 @@
 #include "nav2_msgs/action/follow_path.hpp"
 #include "nav2_util/simple_action_server.hpp"
 #include "nav2_util/robot_utils.hpp"
+#include "rtmonitor/rtmonitor.hpp"
 
 namespace dwb_controller
 {
@@ -81,6 +82,7 @@ protected:
   std::unique_ptr<ProgressChecker> progress_checker_;
 
   double controller_frequency_;
+  rtmonitor::RealTimeMonitor rtm_;
 };
 
 }  // namespace dwb_controller
