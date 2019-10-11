@@ -93,6 +93,7 @@ ControllerServer::on_configure(const rclcpp_lifecycle::State & state)
       std::bind(&ControllerServer::followPath, this));
 
   rtm_.init("looptime_cmd_vel");
+  rtm_.init(shared_from_this(), "nav-req-to-cmd-vel");
 
   return nav2_util::CallbackReturn::SUCCESS;
 }
@@ -162,6 +163,8 @@ ControllerServer::on_shutdown(const rclcpp_lifecycle::State &)
 void ControllerServer::followPath()
 {
   RCLCPP_INFO(get_logger(), "Received a goal, begin following path");
+
+  rtm_.calc_elapsed_g("nav-req-to-cmd-vel", false, this->now());
 
   try {
     setPlannerPath(action_server_->get_current_goal()->path);

@@ -28,6 +28,7 @@
 #include "rclcpp_action/rclcpp_action.hpp"
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/create_timer_ros.h"
+#include "rtmonitor/rtmonitor.hpp"
 
 namespace nav2_bt_navigator
 {
@@ -89,6 +90,9 @@ protected:
   // Spinning transform that can be used by the BT nodes
   std::shared_ptr<tf2_ros::Buffer> tf_;
   std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
+
+  // Real Time Monitor object for performance metrics
+  rtmonitor::RealTimeMonitor rtm_;
 };
 
 }  // namespace nav2_bt_navigator

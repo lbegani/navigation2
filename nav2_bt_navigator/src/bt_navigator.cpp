@@ -121,6 +121,8 @@ BtNavigator::on_configure(const rclcpp_lifecycle::State & /*state*/)
   tree_->nodes = std::move(temp_tree.nodes);
   temp_tree.root_node = nullptr;
 
+  rtm_.init(shared_from_this(), "nav-req-to-cmd-vel");
+
   return nav2_util::CallbackReturn::SUCCESS;
 }
 
@@ -238,6 +240,8 @@ BtNavigator::initializeGoalPose()
 
   RCLCPP_INFO(get_logger(), "Begin navigating from current location to (%.2f, %.2f)",
     goal->pose.pose.position.x, goal->pose.pose.position.y);
+
+  rtm_.calc_elapsed_g("nav-req-to-cmd-vel", true, this->now());
 
   // Update the goal pose on the blackboard
   *(blackboard_->get<geometry_msgs::msg::PoseStamped::SharedPtr>("goal")) = goal->pose;

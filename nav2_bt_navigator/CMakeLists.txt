@@ -15,7 +15,8 @@ find_package(behaviortree_cpp REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(nav2_util REQUIRED)
 find_package(tf2_ros REQUIRED)
-
+find_package(rtmonitor REQUIRED)
+find_package(rtmonitor_msgs REQUIRED)
 nav2_package()
 
 include_directories(
@@ -47,6 +48,8 @@ set(dependencies
   std_srvs
   nav2_util
   tf2_ros
+  rtmonitor
+  rtmonitor_msgs
 )
 
 ament_target_dependencies(${executable_name}
