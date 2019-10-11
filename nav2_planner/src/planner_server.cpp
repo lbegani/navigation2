@@ -222,6 +222,8 @@ PlannerServer::computePathToPose()
     publishPlan(result->path);
 
     action_server_->succeeded_current(result);
+
+    rtm_.calc_elapsed_g("nav-pose-to-cmd-vel", true, this->now());
     return;
   } catch (std::exception & ex) {
     RCLCPP_WARN(get_logger(), "%s plugin failed to plan calculation to (%.2f, %.2f): \"%s\"",

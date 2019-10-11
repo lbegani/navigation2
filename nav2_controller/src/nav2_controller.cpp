@@ -163,8 +163,8 @@ ControllerServer::on_shutdown(const rclcpp_lifecycle::State &)
 void ControllerServer::followPath()
 {
   RCLCPP_INFO(get_logger(), "Received a goal, begin following path");
-
   rtm_.calc_elapsed_g("nav-req-to-cmd-vel", false, this->now());
+  rtm_.calc_elapsed_g("nav-pose-to-cmd-vel", false, this->now());
 
   try {
     setPlannerPath(action_server_->get_current_goal()->path);
