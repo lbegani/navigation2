@@ -242,6 +242,7 @@ BtNavigator::initializeGoalPose()
     goal->pose.pose.position.x, goal->pose.pose.position.y);
 
   rtm_.calc_elapsed_g("nav-req-to-cmd-vel", true, this->now());
+  rtm_.calc_elapsed_g("nav-req-to-comp-path", true, this->now());
 
   // Update the goal pose on the blackboard
   *(blackboard_->get<geometry_msgs::msg::PoseStamped::SharedPtr>("goal")) = goal->pose;

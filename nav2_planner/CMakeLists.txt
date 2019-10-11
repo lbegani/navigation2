@@ -17,7 +17,8 @@ find_package(tf2_ros REQUIRED)
 find_package(nav2_costmap_2d REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(nav2_core REQUIRED)
-
+find_package(rtmonitor REQUIRED)
+find_package(rtmonitor_msgs REQUIRED)
 nav2_package()
 
 include_directories(
@@ -42,6 +43,8 @@ set(dependencies
   nav2_costmap_2d
   pluginlib
   nav2_core
+  rtmonitor
+  rtmonitor_msgs
 )
 
 add_library(${library_name} SHARED

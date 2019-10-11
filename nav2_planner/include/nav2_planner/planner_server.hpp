@@ -35,6 +35,7 @@
 #include "pluginlib/class_loader.hpp"
 #include "pluginlib/class_list_macros.hpp"
 #include "nav2_core/global_planner.hpp"
+#include "rtmonitor/rtmonitor.hpp"
 
 namespace nav2_planner
 {
@@ -81,6 +82,9 @@ protected:
 
   // Publishers for the path
   rclcpp_lifecycle::LifecyclePublisher<nav_msgs::msg::Path>::SharedPtr plan_publisher_;
+
+  // Real Time Monitor object for performance metrics
+  rtmonitor::RealTimeMonitor rtm_;
 };
 
 }  // namespace nav2_planner
