@@ -12,6 +12,8 @@ find_package(nav2_msgs REQUIRED)
 find_package(nav_2d_utils REQUIRED)
 find_package(nav_2d_msgs REQUIRED)
 find_package(pluginlib REQUIRED)
+find_package(rtmonitor REQUIRED)
+find_package(rtmonitor_msgs REQUIRED)
 
 nav2_package()
 
@@ -44,6 +46,8 @@ set(dependencies
   nav2_util
   nav2_core
   pluginlib
+  rtmonitor
+  rtmonitor_msgs
 )
 
 ament_target_dependencies(${library_name}

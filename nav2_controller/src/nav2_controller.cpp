@@ -92,6 +92,8 @@ ControllerServer::on_configure(const rclcpp_lifecycle::State & state)
   action_server_ = std::make_unique<ActionServer>(rclcpp_node_, "FollowPath",
       std::bind(&ControllerServer::followPath, this));
 
+  rtm_.init("looptime_cmd_vel");
+
   return nav2_util::CallbackReturn::SUCCESS;
 }
 
@@ -187,6 +189,7 @@ void ControllerServer::followPath()
       updateGlobalPath();
 
       computeAndPublishVelocity();
+      rtm_.calc_looptime("looptime_cmd_vel", this->now());
 
       if (isGoalReached()) {
         RCLCPP_INFO(get_logger(), "Reached the goal!");

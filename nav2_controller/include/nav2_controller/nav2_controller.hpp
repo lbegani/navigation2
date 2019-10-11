@@ -29,6 +29,7 @@
 #include "nav2_util/robot_utils.hpp"
 #include "pluginlib/class_loader.hpp"
 #include "pluginlib/class_list_macros.hpp"
+#include "rtmonitor/rtmonitor.hpp"
 
 namespace nav2_controller
 {
@@ -84,6 +85,9 @@ protected:
   std::unique_ptr<ProgressChecker> progress_checker_;
 
   double controller_frequency_;
+
+  // Real Time Monitor object for performance metrics
+  rtmonitor::RealTimeMonitor rtm_;
 };
 
 }  // namespace nav2_controller
